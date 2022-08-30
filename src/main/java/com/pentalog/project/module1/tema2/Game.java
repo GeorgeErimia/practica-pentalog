@@ -22,18 +22,27 @@ public abstract class Game{
 
     public List<String> getPlatforms() { return this.platforms; }
 
+    public double getPrice() { return this.price; }
+
     // SETTERS
     public void setName(String name) { this.name = name; }
 
     public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate; }
 
     public void setPlatforms(List<String> platforms) { this.platforms = platforms; }
+    public void setPrice(double price) { this.price = price; }
+
+    public void addDiscount(double percent){
+        price = price - ((percent/100) * price);
+    }
 
     // MEHTODS
     public String getBasicInfo(){
         StringBuilder str = new StringBuilder("");
         str.append("\r\nName: " + this.name + "\r\n");
-        str.append("Price: " + this.price + "\r\n");
+        if(price > 0.0)
+            str.append("Price: " + this.price + "\r\n");
+        else str.append("Price: FREE");
         return str.toString();
     }
 }

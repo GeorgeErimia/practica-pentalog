@@ -20,6 +20,19 @@ public class MOBAGame extends Game implements GameInterface {
         this.nrOfMaps = nrOfMaps;
     }
 
+    // GETTERS
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public int getNrOfHeroes() {
+        return nrOfHeroes;
+    }
+
+    public int getNrOfMaps() {
+        return nrOfMaps;
+    }
+
     @Override
     public String iGetInfo() {
         // Build basic info
