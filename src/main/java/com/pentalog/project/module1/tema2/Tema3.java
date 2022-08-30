@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Tema3 {
     public static void main(String[] args) {
-        GameDB database = new GameDB();
+        GameDB database = GameDB.getInstance();
         database.addGames();
 
         String choice = "";
@@ -17,17 +17,17 @@ public class Tema3 {
 
         switch (choice) {
             case "1":
-                for (ShooterGame game : database.getAllShooterGames()) {
+                for (ShooterGame game : database.getShooterGames()) {
                     System.out.println(game.iGetInfo());
                 }
                 break;
             case "2":
-                for (MOBAGame game : database.getAllMOBAGames()) {
+                for (MOBAGame game : database.getMOBAGames()) {
                     System.out.println(game.iGetInfo());
                 }
                 break;
             case "3":
-                for (RPGGame game : database.getAllRPGGames()) {
+                for (RPGGame game : database.getRPGGames()) {
                     System.out.println(game.iGetInfo());
                 }
                 break;

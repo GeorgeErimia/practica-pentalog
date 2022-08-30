@@ -7,79 +7,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Main {
-    public static void addGames(List<Game> games){
-        games.add(new ShooterGame(
-                        "Call of Duty",
-                        "29/10/2003",
-                        5.99,
-                        50,
-                        1
-                )
-        );
-
-        games.add(new ShooterGame(
-                        "Battlefield 1942",
-                        "28/06/2004",
-                        9.98,
-                        50,
-                        1
-                )
-        );
-
-        games.add(new ShooterGame(
-                        "Apex Legends",
-                        "04/02/2019",
-                        0.00,
-                        100,
-                        4
-                )
-        );
-
-        games.add(new RPGGame(
-                "Diablo II",
-                "29/06/2000",
-                25.00,
-                1
-        ));
-
-        games.add(new RPGGame(
-                "Fallout 4",
-                "10/11/2015",
-                21.48,
-                1
-        ));
-
-        games.add(new RPGGame(
-                "Path of Exile",
-                "23/10/2013",
-                0.00,
-                1
-        ));
-
-        games.add(new MOBAGame(
-                "League of Legends",
-                "27/10/2009",
-                0.00,
-                10,
-                159,
-                2
-        ));
-
-        games.add(new MOBAGame(
-                "DOTA 2",
-                "9/07/2013",
-                0.00,
-                10,
-                123,
-                1
-        ));
-    }
     public static void main(String[] args) {
         //      STREAMS
 
-        // Initialize games list
-        List<Game> games = new ArrayList<>();
-        addGames(games);
+        // Initialize games list (From GameDB instance)
+        List<Game> games = GameDB.getInstance().getGames();
 
         // Get only ShooterGames
         System.out.println("List of only ShooterGames");

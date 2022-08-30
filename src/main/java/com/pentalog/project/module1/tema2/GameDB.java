@@ -1,114 +1,134 @@
 package com.pentalog.project.module1.tema2;
 
+import com.pentalog.project.module1.design_patterns.Builder.GameBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameDB {
+
+    // SINGLETON PATTERN (game database needs only one instance)
+    private static GameDB instance;
     List<Game> gameList;
 
-    public GameDB(List<Game> gameList) { this.gameList = gameList; }
+    // Lazy Initialization
+    public static GameDB getInstance(){
+        if(instance == null)
+            instance = new GameDB();
+        return instance;
+    }
 
-    public List<ShooterGame> getAllShooterGames(){
+    public List<ShooterGame> getShooterGames() {
         List<ShooterGame> shooterGames = new ArrayList<>();
-        for(Game game : gameList){
-            if(game instanceof ShooterGame){
+        for (Game game : gameList) {
+            if (game instanceof ShooterGame) {
                 shooterGames.add((ShooterGame) game);
             }
         }
         return shooterGames;
     }
 
-    public List<RPGGame> getAllRPGGames(){
+    public List<RPGGame> getRPGGames() {
         List<RPGGame> rpgGames = new ArrayList<>();
-        for(Game game : gameList){
-            if(game instanceof RPGGame){
+        for (Game game : gameList) {
+            if (game instanceof RPGGame) {
                 rpgGames.add((RPGGame) game);
             }
         }
         return rpgGames;
     }
 
-    public List<MOBAGame> getAllMOBAGames(){
+    public List<MOBAGame> getMOBAGames() {
         List<MOBAGame> mobaGames = new ArrayList<>();
-        for(Game game : gameList){
-            if(game instanceof MOBAGame){
+        for (Game game : gameList) {
+            if (game instanceof MOBAGame) {
                 mobaGames.add((MOBAGame) game);
             }
         }
         return mobaGames;
     }
 
-    public GameDB(){
-        gameList = new ArrayList<>();
+    public List<Game> getGames() {
+        return this.gameList;
     }
 
-    public void addGames(){
+    private GameDB() {
+        gameList = new ArrayList<>();
+        addGames();
+    }
 
-        gameList.add(new ShooterGame(
-                        "Call of Duty",
-                        "29/10/2003",
-                        5.99,
-                        50,
-                        1
-                )
-        );
+    public void addGames() {
+        GameBuilder gameBuilder = new GameBuilder();
 
-        gameList.add(new ShooterGame(
-                        "Battlefield 1942",
-                        "28/06/2004",
-                        9.98,
-                        50,
-                        1
-                )
-        );
+        // Shooters
+        gameBuilder.setName("Call of Duty");
+        gameBuilder.setReleaseDate("29/10/2003");
+        gameBuilder.setPrice(5.99);
+        gameBuilder.setMaxPlayers(50);
+        gameBuilder.setNrOfClasses(1);
+        gameList.add(gameBuilder.getShooterGame());
 
-        gameList.add(new ShooterGame(
-                        "Call of Duty",
-                        "29/10/2003",
-                        15.99,
-                        50,
-                        1
-                )
-        );
+        gameBuilder.reset();
 
-        gameList.add(new RPGGame(
-                "Diablo II",
-                "29/06/2000",
-                25.00,
-                1
-        ));
+        gameBuilder.setName("Battlefield 1942");
+        gameBuilder.setReleaseDate("28/06/2004");
+        gameBuilder.setPrice(9.98);
+        gameBuilder.setMaxPlayers(50);
+        gameBuilder.setNrOfClasses(5);
+        gameList.add(gameBuilder.getShooterGame());
 
-        gameList.add(new RPGGame(
-                "Fallout 4",
-                "10/11/2015",
-                21.48,
-                1
-        ));
+        gameBuilder.reset();
 
-        gameList.add(new RPGGame(
-                "Path of Exile",
-                "23/10/2013",
-                0.00,
-                1
-        ));
+        gameBuilder.setName("Apex Legends");
+        gameBuilder.setReleaseDate("04/02/2019");
+        gameBuilder.setPrice(0.00);
+        gameBuilder.setMaxPlayers(100);
+        gameBuilder.setNrOfClasses(4);
+        gameList.add(gameBuilder.getShooterGame());
 
-        gameList.add(new MOBAGame(
-                "League of Legends",
-                "27/10/2009",
-                0.00,
-                10,
-                159,
-                2
-        ));
+        gameBuilder.reset();
 
-        gameList.add(new MOBAGame(
-                "DOTA 2",
-                "9/07/2013",
-                0.00,
-                10,
-                123,
-                1
-        ));
+        gameBuilder.setName("Diablo II");
+        gameBuilder.setReleaseDate("29/06/2000");
+        gameBuilder.setPrice(25.00);
+        gameBuilder.setMaxPlayers(1);
+        gameList.add(gameBuilder.getRPGGame());
+
+        gameBuilder.reset();
+
+        gameBuilder.setName("Fallout 4");
+        gameBuilder.setReleaseDate("10/11/2015");
+        gameBuilder.setPrice(21.48);
+        gameBuilder.setMaxPlayers(1);
+        gameList.add(gameBuilder.getRPGGame());
+
+        gameBuilder.reset();
+
+        gameBuilder.setName("Path of Exile");
+        gameBuilder.setReleaseDate("23/10/2013");
+        gameBuilder.setPrice(0.00);
+        gameBuilder.setMaxPlayers(1);
+        gameList.add(gameBuilder.getRPGGame());
+
+        gameBuilder.reset();
+
+        gameBuilder.setName("League of Legends");
+        gameBuilder.setReleaseDate("27/10/2009");
+        gameBuilder.setPrice(0.00);
+        gameBuilder.setMaxPlayers(10);
+        gameBuilder.setNrOfHeroes(159);
+        gameBuilder.setNrOfMaps(2);
+        gameList.add(gameBuilder.getMOBAGame());
+
+        gameBuilder.reset();
+
+        gameBuilder.setName("DOTA 2");
+        gameBuilder.setReleaseDate("9/07/2013");
+        gameBuilder.setPrice(0.00);
+        gameBuilder.setMaxPlayers(10);
+        gameBuilder.setNrOfHeroes(123);
+        gameBuilder.setNrOfMaps(1);
+        gameList.add(gameBuilder.getMOBAGame());
 
     }
 
