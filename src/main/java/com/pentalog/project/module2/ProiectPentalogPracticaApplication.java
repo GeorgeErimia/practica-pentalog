@@ -1,4 +1,4 @@
-package com.pentalog.project;
+package com.pentalog.project.module2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
