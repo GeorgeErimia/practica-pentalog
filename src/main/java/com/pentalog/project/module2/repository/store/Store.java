@@ -27,7 +27,14 @@ public class Store {
     @NotBlank
     private String location;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "store_game",
+//            joinColumns = @JoinColumn(name = "store_id"),
+//            inverseJoinColumns = @JoinColumn(name = "game_id"))
+//    private List<Game> games = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "store_id")
     private List<Game> games = new ArrayList<>();
+
 }

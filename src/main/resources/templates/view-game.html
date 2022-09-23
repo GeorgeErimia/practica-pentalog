@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title th:text="${game.getName()}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+
+<body>
+<img th:src="${game.getImageUrl()}" alt="game.getName" class="center"/>
+<h1 th:text = "${game.getName()}"></h1>
+<br/>
+
+<h1 th:text = "${game.getDescription()}"></h1>
+<h1 th:utext = "'Price : ' + ${game.getPrice()} + '$'"></h1>
+
+<br/><br/><br/>
+
+<div class="details">
+    <h2 th:utext="'Release Date : ' + ${game.getReleaseDate()}"></h2>
+    <h2 th:utext = "'Platform : ' + ${game.getPlatform()}"></h2>
+    <h2 th:utext = "'Publisher : ' + ${game.getPublisher()}"></h2>
+    <h2 th:utext = "'Developer : ' + ${game.getDeveloper()}"></h2>
+    <h2 th:utext = "'Rating : ' + ${game.getRating()}"></h2>
+</div>
+
+</body>
+
+</html>

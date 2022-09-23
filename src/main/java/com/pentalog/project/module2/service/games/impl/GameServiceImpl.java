@@ -1,13 +1,17 @@
 package com.pentalog.project.module2.service.games.impl;
 
 import com.pentalog.project.module2.repository.game.Game;
+import com.pentalog.project.module2.repository.game.GameQuery;
 import com.pentalog.project.module2.repository.game.GameRepository;
+import com.pentalog.project.module2.repository.store.StoreRepository;
 import com.pentalog.project.module2.service.games.GameService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -16,26 +20,34 @@ public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
 
 
-    // Adds a new game to the database
+    // Add a game
     @Override
     public Game addGame(@Valid Game game) {
         return gameRepository.save(game);
     }
 
 
-    // Get game from database by id
+    // Get game by id
     @Override
     public Game getGameById(@NotNull Integer id) {
         return gameRepository.findById(id).orElseThrow(() -> new RuntimeException("Game not found"));
     }
 
+    // Get all games
+    @Override
+    public List<Game> getGames() {
+        List<Game> games = new ArrayList<>();
+        gameRepository.findAll().forEach(games::add);
+        return games;
+    }
 
-    // Get game from database by name
+    // Get game by name
     @Override
     public Game getGameByName(@NotNull String name) {
         return gameRepository.findByName(name).orElseThrow(() -> new RuntimeException("Game not found"));
     }
 
+    // Update game by id
     @Override
     public Game updateGameById(@NotNull Integer id, Game game) {
         Game gameToUpdate = gameRepository
@@ -57,6 +69,7 @@ public class GameServiceImpl implements GameService {
         return gameRepository.save(gameToUpdate);
     }
 
+    // Patch a game by id
     @Override
     public Game patchGameById(@NotNull Integer id, Game game) {
         Game gameToUpdate = gameRepository
@@ -106,6 +119,7 @@ public class GameServiceImpl implements GameService {
         return gameRepository.save(gameToUpdate);
     }
 
+    // Delete game by id
     @Override
     public void deleteGameById(@NotNull Integer id) {
         gameRepository.deleteById(id);

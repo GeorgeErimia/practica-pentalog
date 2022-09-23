@@ -5,7 +5,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.Optional;
 
-public interface StoreRepository extends PagingAndSortingRepository<Store, Integer> {
+public interface StoreRepository extends CrudRepository<Store, Integer> {
 
     Optional<Store> findByName (String name);
 }

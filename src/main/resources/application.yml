@@ -5,9 +5,10 @@ spring:
   datasource:
     username: ${POSTGRESQL_USER:postgres}
     password: ${POSTGRESQL_PASSWORD:parola}
-    url: "jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${POSTGRESQL_DATABASE:postgres}"
+    url: "jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${POSTGRESQL_DATABASE:practica-pentalog}"
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     hibernate:
       ddl-auto: update
     generate-ddl: true
+    show-sql: true

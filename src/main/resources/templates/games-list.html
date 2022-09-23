@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Games List </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+    <a href="http://localhost:8080" class="btn btn-primary">Home</a>
+    <a th:href="@{/games/add}" class="btn btn-primary">Add Game</a>
+
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Platform</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Price</th>
+        <th scope="col">     </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="game : ${games}">
+        <td th:text="${game.name}"> </td>
+        <td th:text="${game.genre}"> </td>
+        <td th:text="${game.platform}"> </td>
+        <td th:text="${game.rating}"> </td>
+        <td th:text="${game.price}"> </td>
+
+        <td><a th:href="@{/games/{id}(id=${game.id})}" class="btn btn-primary">GO</a></td>
+        <td><a th:href="@{/games/{id}/update(id=${game.id})}" class ="btn btn-secondary">EDIT</a></td>
+        <td><a th:href="@{/games/{id}/delete(id=${game.id})}" class ="btn btn-danger">DELETE</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

@@ -1,10 +1,14 @@
 package com.pentalog.project.module2.repository.game;
 
 
+import com.pentalog.project.module2.repository.store.Store;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -17,26 +21,29 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
         private Integer id;
 
+    @NotBlank
+    @Column(unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
         private String name;
 
-        private String releaseDate;
+        private String releaseDate = "none";
 
-        private String description;
+        private String description = "none";
 
-        private String imageUrl;
+        private String imageUrl = "none";
 
-        private String trailerUrl;
+        private String trailerUrl = "none";
 
-        private String genre;
+        private String genre = "none";
 
-        private String platform;
+        private String platform = "none";
 
-        private String publisher;
+        private String publisher = "none";
 
-        private String developer;
+        private String developer = "none";
 
-        private String rating;
+        private String rating = "none";
 
-        private double price;
+        private double price = 0.0;
 
 }
